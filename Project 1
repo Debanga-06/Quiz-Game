@@ -1,0 +1,1047 @@
+import random
+import time
+
+class QuizGame:
+    def __init__(self):
+        self.questions = {
+            'C' : {
+                'beginner' : [
+                        {
+                           "question": "What is the correct syntax to include a header file in C?",
+                              "options": ["#include <header.h>", "include <header.h>", "#include header.h", "#header <header.h>"],
+                                  "answer": "#include <header.h>"
+                        },
+                        {
+                          "question": "Which of the following is a valid variable declaration in C?",
+                             "options": ["int 1number;", "float number1;", "char #name;", "double number@1;"],
+                                  "answer": "float number1"
+                        },
+                        {
+                          "question": "What is the output of printf(\"%d\", 5 + 10);?",
+                             "options": ["15", "510", "5 + 10", "Error"],
+                                  "answer": "15"
+                        }, 
+                        {
+                          "question": "Which of the following is not a data type in C?",
+                              "options": ["int", "float", "string", "char"],
+                                   "answer": "string"
+                        },
+                        {
+                           "question": "How do you declare a constant in C?",
+                             "options": ["const int x;", "int const x;", "#define x;", "All of the above"],
+                                 "answer": "All of the above"
+                        },
+                        {
+                           "question": "What is the purpose of the main() function in C?",
+                               "options": ["To declare variables", "To execute the program", "To include libraries", "To define functions"],
+                                   "answer": "To define functions"
+                        },
+                        {
+                          "question": "Which operator is used to access a member of a structure?",
+                             "options": [".", "->", "*", "&"],
+                                  "answer": "."
+                        },
+                        {
+                           "question": "What is the size of an int in C?",
+                              "options": ["1 byte", "2 bytes", "4 bytes", "8 bytes"],
+                                  "answer": "4 bytes"
+                        },
+                        {
+                           "question": "Which of the following loops is guaranteed to execute at least once?",
+                             "options": ["for loop", "while loop", "do-while loop", "None of the above"],
+                                 "answer": "do-while loop"
+                        },
+                        {
+                           "question": "What is the correct way to comment in C?",
+                              "options": ["// This is a comment", "/* This is a comment */", "# This is a comment", "Both A and B"],
+                                  "answer": "Both A and B"
+                        },
+                        {
+                           "question": "Which function is used to read a string in C?",
+                              "options": ["scanf()", "gets()", "fgets()", "All of the above"],
+                                 "answer": "All of the above"
+                        },
+                        {
+                          "question": "What does the 'break' statement do?",
+                             "options": ["Exits the program", "Exits the loop", "Skips the current iteration", "None of the above"],
+                                 "answer": "Exits the loop"
+                        },
+                        {
+                          "question": "How do you declare a pointer in C?",
+                             "options": ["int *ptr;", "int ptr;", "*int ptr;", "ptr int;"],
+                                  "answer": "int *ptr;"
+                        },
+                        {
+                          "question": "What is the output of the following code: printf(\"%d\", 10 % 3);?",
+                             "options": ["1", "3", "0", "10"],
+                                 "answer": "1"
+                        },
+                        {
+                           "question": "Which of the following is a valid function declaration?",
+                              "options": ["void function();", "function void();", "void function[];", "function();"],
+                                 "answer": "void function();"
+                        },
+                        {
+                          "question": "What is the purpose of the return statement?",
+                              "options": ["To return a value from a function", "To exit a loop", "To terminate the program", "None of the above"],
+                                  "answer": "To return a value from a function"
+                        },
+                        {
+                           "question": "Which of the following is used to allocate memory dynamically?",
+                                 "options": ["malloc()", "calloc()", "realloc()", "All of the above"],
+                                     "answer": "All of the above"
+                        },
+                        {
+                           "question": "What is the correct way to declare an array in C?",
+                              "options": ["int arr[10];", "int arr();", "int arr{10};", "arr int[10];"],
+                                  "answer": "int arr[10];"
+                        },
+                        {
+                          "question": "Which of the following is a valid way to define a structure?",
+                             "options": ["struct { int x; };", "struct point { int x; int y; };", "struct point();", "Both A and B"],
+                                 "answer": "struct point {int x ; int y;};"
+                        },
+                        {
+                          "question": "What is the output of the following code: printf(\"%c\", 'A' + 1);?",
+                             "options": ["A", "B", "C", "Error"],
+                                 "answer": "B"
+                        }
+                ],
+                'intermediate' :[
+                           {
+                              "question": "1. What is the size of an int in C?",
+                                 "options": ["A) 2 bytes", "B) 4 bytes", "C) 8 bytes", "D) Depends on the compiler"],
+                                      "answer": "B"
+                            },
+                            {
+                              "question": "2. Which of the following is a valid declaration of a pointer in C?",
+                                 "options": ["A) int *ptr;", "B) int ptr*;", "C) *int ptr;", "D) ptr int*;"],
+                                     "answer": "A"
+                            },
+                            {
+                              "question": "3. What does the 'static' keyword do?",
+                                 "options": ["A) Makes a variable global", "B) Limits the scope of a variable", "C) Allocates memory dynamically", "D) None of the above"],
+                                     "answer": "B"
+                            },
+                            {
+                               "question": "4. Which of the following is not a valid C data type?",
+                                  "options": ["A) int", "B) float", "C) string", "D) char"],
+                                     "answer": "C"
+                            },
+                            {
+                              "question": "5. What is the output of the following code: printf('%d', 5 + 2 * 3);?",
+                                  "options": ["A) 11", "B) 21", "C) 8", "D) 17"],
+                                     "answer": "C"
+                            },
+                            {
+                              "question": "6. Which operator is used to access members of a structure?",
+                                 "options": ["A) .", "B) ->", "C) &", "D) Both A and B"],
+                                     "answer": "D"
+                            },
+                            {
+                               "question": "7. What is the purpose of the 'malloc' function?",
+                                 "options": ["A) To allocate memory", "B) To free memory", "C) To initialize memory", "D) None of the above"],
+                                     "answer": "A"
+                            },
+                            {
+                              "question": "8. Which of the following is a loop construct in C?",
+                                 "options": ["A) for", "B) while", "C) do-while", "D) All of the above"],
+                                     "answer": "D"
+                            },
+                            {
+                              "question": "9. What is the correct way to declare a function in C?",
+                                  "options": ["A) void functionName();", "B) functionName void();", "C) void functionName[];", "D) functionName(); void"],
+                                     "answer": "A"
+                            },
+                            {
+                               "question": "10. What does the 'break' statement do?",
+                                  "options": ["A) Exits the current loop", "B) Skips the current iteration", "C) Exits the program", "D) None of the above"],
+                                     "answer": "A"
+                            },
+                            {
+                               "question": "11. Which of the following is used to include standard libraries in C?",
+                                  "options": ["A) #include <library>", "B) import library", "C) include library", "D) #library"],
+                                      "answer": "A"
+                            },
+                            {
+                              "question": "12. What is the default return type of a function in C?",
+                                  "options": ["A) int", "B) void", "C) char", "D) float"],
+                                      "answer": "A"
+                            },
+                            {
+                              "question": "13. Which of the following is a preprocessor directive?",
+                                 "options": ["A) #define", "B) #include", "C) #ifdef", "D) All of the above"],
+                                      "answer": "D"
+                            },
+                            {
+                               "question": "14. What is the purpose of the 'return' statement?",
+                                  "options": ["A) To exit a function", "B) To return a value from a function", "C) Both A and B", "D) None of the above"],
+                                      "answer": "C"
+                            },
+                            {
+                               "question": "15. Which of the following is a valid comment in C?",
+                                  "options": ["A) // This is a comment", "B) /* This is a comment */", "C) Both A and B", "D) None of the above"],
+                                     "answer": "C"
+                            },
+                            {
+                              "question": "16. What is the purpose of the 'sizeof' operator?",
+                                 "options": ["A) To determine the size of a variable", "B) To allocate memory", "C) To free memory", "D) None of the above"],
+                                     "answer": "A"
+                            },
+                            {
+                                "question": "17. Which of the following is a valid way to declare an array?",
+                                  "options": ["A) int arr[10];", "B) int arr();", "C) int arr{10};", "D) arr int[10];"],
+                                     "answer": "A"
+                            },
+                            {
+                              "question": "18. What is the output of the following code: printf('%d', 10 % 3);?",
+                                 "options": ["A) 1", "B) 3", "C) 0", "D) 10"],
+                                     "answer": "A"
+                            },
+                            {
+                               "question": "19. Which of the following is used to declare a constant in C?",
+                                  "options": ["A) const", "B) #define", "C) Both A and B", "D) None of the above"],
+                                     "answer": "C"
+                            },
+                            {
+                              "question": "20. What is the purpose of the 'void' keyword in a function declaration?",
+                                 "options": ["A) Indicates no return value", "B) Indicates a pointer", "C) Indicates a constant", "D) None of the above"],
+                                     "answer": "A"
+                             }
+                ],
+                'expert' : [
+                            {
+                              "question": "What is the size of an int in C?",
+                                  "options": ["1 byte", "2 bytes", "4 bytes", "8 bytes"],
+                                       "answer": "4 bytes"
+                            },
+                            {
+                              "question": "Which of the following is a valid declaration of a pointer in C?",
+                                  "options": ["int *ptr;", "int ptr*;", "ptr int*;", "int &ptr;"],
+                                      "answer": "int *ptr;"
+                            },
+                            {
+                               "question": "What does the 'static' keyword do?",
+                                 "options": ["Limits the scope of a variable", "Allocates memory dynamically", "Defines a constant", "None of the above"],
+                                     "answer": "Limits the scope of a variable"
+                            },
+                            {
+                              "question": "Which of the following is used to include standard input and output functions?",
+                                   "options": ["#include <stdio.h>", "#include <stdlib.h>", "#include <string.h>", "#include <math.h>"],
+                                       "answer": "#include <stdio.h>"
+                            },
+                            {
+                               "question": "What is the output of the following code: printf('%d', 5 + 2 * 3);?",
+                                 "options": ["11", "21", "9", "8"],
+                                     "answer": "11"
+                            },
+                            {  
+                              "question": "Which operator is used to access members of a structure?",
+                                  "options": [".", "->", "&", "*"],
+                                      "answer": "."
+                            },
+                            {
+                              "question": "What is the purpose of the 'break' statement?",
+                                 "options": ["To exit a loop", "To skip an iteration", "To terminate a program", "None of the above"],
+                                      "answer": "To exit a loop"
+                            },
+                            {
+                              "question": "Which of the following is not a valid C data type?",
+                                 "options": ["int", "float", "string", "char"],
+                                     "answer": "string"
+                            },
+                            {
+                              "question": "What is the correct way to declare a function in C?",
+                                 "options": ["void functionName();", "functionName void();", "void functionName[];", "functionName(); void"],
+                                     "answer": "void functionName();"
+                            },
+                            {
+                              "question": "What does the 'sizeof' operator do?",
+                                 "options": ["Returns the size of a variable", "Returns the size of a data type", "Both A and B", "None of the above"],
+                                      "answer": "Both A and B"
+                            },
+                            {
+                              "question": "Which of the following is a loop control statement?",
+                                 "options": ["if", "for", "switch", "return"],
+                                      "answer": "for"
+                            },
+                            {
+                              "question": "What is the default return type of a function in C?",
+                                 "options": ["int", "void", "char", "float"],
+                                     "answer": "int"
+                            }, 
+                            {
+                               "question": "Which of the following is used to allocate memory dynamically?",
+                                  "options": ["malloc()", "calloc()", "realloc()", "All of the above"],
+                                      "answer": "All of the above"
+                            },
+                            {
+                              "question": "What is the purpose of the 'continue' statement?",
+                                  "options": ["To exit a loop", "To skip the current iteration", "To terminate a program", "None of the above"],
+                                      "answer": "To skip the current iteration"
+                            },
+                            {
+                               "question": "Which of the following is a valid comment in C?",
+                                   "options": ["// This is a comment", "/* This is a comment */", "# This is a comment", "Both A and B"],
+                                       "answer": "Both A and B"
+                            },
+                            {
+                              "question": "What is the output of the following code: printf('%d', 10 % 3);?",
+                                  "options": ["1", "3", "0", "2"],
+                                      "answer": "1"
+                            },
+                            {
+                               "question": "Which function is used to read a string from standard input?",
+                                  "options": ["scanf()", "gets()", "fgets()", "Both B and C"],
+                                     "answer": "Both B and C"
+                            },
+                            {
+                               "question": "What is the purpose of the 'return' statement?",
+                                  "options": ["To exit a function", "To return a value from a function", "Both A and B", "None of the above"],
+                                     "answer": "Both A and B"
+                            },
+                            {
+                                "question": "Which of the following is a preprocessor directive?",
+                                   "options": ["#define", "#include", "#ifdef", "All of the above"],
+                                     "answer": "All of the above"
+                            },
+                            {
+                              "question": "What is the correct syntax for a for loop?",
+                                  "options": ["for (initialization; condition; increment)", "for (condition; initialization; increment)", "for (increment; condition; initialization)", "for (initialization; increment; condition)"],
+                                       "answer": "for (initialization; condition; increment)"
+                            }
+                ]
+            },
+            'Python': {
+                'beginner': [
+                    {
+                        "question": "What is the output of print(2 ** 3)?", 
+                           "options": ["8", "6", "9", "7"], 
+                             "answer": "8"
+                    },
+                    {
+                        "question": "Which of the following is a valid variable name?",
+                           "options": ["1variable", "variable_1", "variable-1", "variable 1"],
+                              "answer": "variable_1"
+                    },
+                    {
+                        "question": "Who developed Python Programming Language?", 
+                           "options": ["Wick Van Rossum", "Rasmus Lerdorf", "Guido Van Rossum", "Niene Stom"],
+                              "answer": "Guido Van Rossum"
+                    },
+                    {
+                        "question": "Which type of programming does Python support?",
+                           "options": ["Object-orinted programming", "Structured Programming", "Functional Programming", "All of the mentioned"],
+                              "answer": "All of the mentioned"
+                    },
+                    {
+                        "question": "Is Python case sensitive when dealing with Identifiers?",
+                           "options": ["No", "Yes", "Machine dependent", "None of the mentioned"], 
+                             "answer": "Yes"
+                    },
+                    {
+                        "question": "Which of the following is the correct extension of the python files?", 
+                          "options": [".pl", ".python", ".py", ".p"], 
+                             "answer": ".py"
+                    },
+                    {
+                        "question": "Is Python code compiled or interpreted?", 
+                           "options": ["Python code is both compiled and interpreted.", "Python code is neither compiled nor interpretd.", "Pthon code is only compiled.", "Python code is only interpreted"], 
+                             "answer": "Python code is only interpreted"
+                    },
+                    { 
+                        "question": "Which of the followng is used to define a block of code in Python ?",
+                           "options": ["Curly braces {}", "Parentheses ()", "Indentation", "Square brackets []"], 
+                              "answer": "Indentation"
+                    }, 
+                    { 
+                        "question": "What is the output of follwing code? print(type(5))",
+                           "options": ["<class 'int'>", ",type 'int'>", "<class 'float'>", "<type'float'>"],
+                             "answer": "<class 'int'>"
+                    }, 
+                    {
+                        "question": "Which of the following is not a keyword in Python?",
+                           "options": ["pass", "eval", "assert", "nonlocal"],
+                              "answer": "eval"
+                    },
+                    {
+                        "question": "Which of the following is the correct way to create a list in Python?",
+                          "options": ["list = (1,2,3)", "list = [1,2,3]", "list = {1,2,3}", "list = <1,2,3>"],
+                             "answer": "list =[1,2,3]"
+                    },
+                    {
+                        "question": "What is the output of print(2 ** 3)?",
+                            "options": ["1", "6", "8", "9"],
+                              "answer": "8"
+                    },
+                    {
+                        "question": "Which of the following is a valid variable name?",
+                           "options": ["1variable", "variable-name", "variable_name", "variable name"],
+                             "answer": "variable_name"
+                    },
+                    {
+                        "question": "What is the correct way to create a list in Python?",
+                          "options": ["[]", "{}", "()", "<>"],
+                             "answer": "[]"
+                    },
+                    {
+                       "question": "What will be the output of print(type(5))?",
+                          "options": ["<class 'int'>", "<class 'str'>", "<class 'float'>", "<class 'list'>"],
+                              "answer": "<class 'int'>"
+                    },
+                    {
+                        "question": "Which keyword is used to define a function in Python?",
+                           "options": ["function", "def", "define", "fun"],
+                             "answer": "def"
+                    },
+                    {
+                        "question": "What is the output of print('Hello' + ' World')?",
+                          "options": ["Hello World", "HelloWorld", "Hello+World", "Error"],
+                             "answer": "Hello World"
+                    },
+                    {
+                        "question": "Which of the following is used to comment in Python?",
+                          "options": ["//", "#", "/* */", "<!-- -->"],
+                            "answer": "#"
+                    },
+                    {
+                        "question": "What is the output of print(len('Python'))?",
+                           "options": ["6", "5", "7", "Error"],
+                             "answer": "6"
+                    },
+                    {
+                       "question": "Which of the following data types is immutable?",
+                          "options": ["List", "Set", "Dictionary", "Tuple"],
+                              "answer": "Tuple"
+                    }
+                ],
+                'intermediate': [
+                    { 
+                          "question": "What is a lambda function?",
+                             "options": ["Anonymous function", "Named function", "Built-in function", "Recursive function"],
+                                 "answer": "Anonymous function"
+                    },
+                    {
+                        "question": "What does PEP stand for?",
+                          "options": ["Python Enhancement Proposal", "Python Easy Proposal", "Python Evaluation Proposal", "Python Execution Proposal"],
+                              "answer": "Python Enhancement Proposal"
+                    },
+                    { 
+                        "question": "What is the output of the following code: print(type([]) is list)?",
+                          "options": ["True", "False"],
+                              "answer": "True"
+                    },
+                    {
+                        "question": "Which of the following is a mutable data type in Python?",
+                          "options": ["Tuple", "List", "String", "Integer"],
+                             "answer": "List"
+                    },
+                    { 
+                        "question": "What will be the output of the following code: print(1 + '1')?",
+                           "options": ["1", "11", "TypeError", "None"],
+                              "answer": "TypeError"
+                    },
+                    {  "question": "What does the 'len()' function do?",
+                          "options": ["Returns the length of an object", "Returns the last element", "Returns the first element", "None of the above"],
+                             "answer": "Returns the length of an object"
+                    },
+                    {  "question": "Which of the following is used to define a function in Python?",
+                          "options": ["def", "function", "define", "fun"],
+                             "answer": "def"
+                    },
+                    { 
+                       "question": "What will be the output of the following code: print(0.1 + 0.2 == 0.3)?",
+                             "options": ["True", "False"],
+                                 "answer": "False"
+                    },
+                    { 
+                        "question": "Which of the following methods can be used to add an element to a list?",
+                           "options": ["add()", "append()", "insert()", "All of the above"],
+                               "answer": "All of the above"
+                    }, 
+                    { 
+                        "question": "What is the purpose of the 'self' keyword in Python?",
+                           "options": ["To refer to the current instance of a class", "To refer to the parent class", "To create a new instance", "None of the above"],
+                             "answer": "To refer to the current instance of a class"
+                    },
+                    {
+                         "question": "What will be the output of the following code: print({1, 2, 3} | {2, 3, 4})?",
+                            "options": ["{1, 2, 3}", "{2, 3, 4}", "{1, 2, 3, 4}", "None of the above"],
+                              "answer": "{1, 2, 3, 4}"
+                    },   
+                    { 
+                        "question": "Which of the following is not a built-in data type in Python?",
+                           "options": ["List", "Dictionary", "Set", "Character"],
+                             "answer": "Character"
+                    },
+                    { 
+                        "question": "What will be the output of the following code: print('Hello' * 3)?",
+                           "options": ["HelloHelloHello", "Hello 3", "3Hello", "None of the above"],
+                             "answer": "HelloHelloHello"
+                    },
+                    {
+                         "question": "Which of the following statements is used to handle exceptions in Python?",
+                            "options": ["try", "except", "finally", "All of the above"],
+                              "answer": "All of the above"
+                    },
+                    { 
+                        "question": "What is the output of the following code?\n\nx = [1, 2, 3]\nprint(x * 2)",
+                           "options": ["[1, 2, 3, 1, 2, 3]", "[2, 4, 6]", "[1, 2, 3, 2, 4, 6]", "Error"],
+                             "answer": "[1, 2, 3, 1, 2, 3]"
+                    },
+                    {
+                         "question": "Which of the following is a mutable data type in Python?",
+                            "options": ["Tuple", "String", "List", "Integer"],
+                              "answer": "List"
+                    },
+                    { 
+                        "question": "What will be the output of the following code?\n\ndef func(a, b=[]):\n    b.append(a)\n    return b\n\nprint(func(1))\nprint(func(2, []))\nprint(func(3))",
+                            "options": ["[1]\n[2]\n[1, 3]", "[1]\n[2]\n[2]", "[1]\n[2]\n[1, 2, 3]", "Error"],
+                               "answer": "[1]\n[2]\n[1, 3]"
+                    },
+                    { 
+                        "question": "What does the 'self' keyword represent in a class method?",
+                           "options": ["The class itself", "The instance of the class", "A static method", "None of the above"],
+                              "answer": "The instance of the class"
+                    },
+                    { 
+                        "question": "What will be the output of the following code?\n\nfor i in range(5):\n    if i == 3:\n        break\n    print(i)",
+                           "options":["0 1 2 3", "0 1 2", "0 1 2 3 4", "Error"],
+                             "answer": "0 1 2"
+                    },
+                    { 
+                        "question": "Which of the following methods can be used to add an element to a set?",
+                           "options": ["add()", "append()", "insert()", "extend()"],
+                             "answer": "add()"
+                    }
+                ],
+                'expert': [
+                    {
+                        "question": "What is the purpose of the 'self' keyword in Python?", 
+                           "options": ["To refer to the class", "To refer to the instance", "To refer to the method", "To refer to the module"],
+                             "answer": "To refer to the instance"
+                    },
+                    {
+                        "question": "What is a metaclass?",
+                          "options": ["A class of classes", "A class of objects", "A class of functions", "A class of modules"], 
+                              "answer": "A class of classes"
+                    },
+                    {
+                        "question": "What is the output of the following code: print(type([]))?",
+                         "options": ["list", "dict", "set", "tuple"],
+                              "answer": "list"
+                    },
+                    {
+                      "question": "Which of the following is a mutable data type in Python?",
+                         "options": ["str", "tuple", "list", "int"],
+                              "answer": "list"
+                    },
+                    {
+                      "question": "What will be the output of the following code: print(2 ** 3 ** 2)?",
+                         "options": ["64", "9", "8", "16"],
+                              "answer": "64"
+                    },
+                    {
+                      "question": "What is the result of the expression: 'Hello' + 'World'?",
+                          "options": [" HelloWorld", "Hello World", "Hello, World", "Error"],
+                              "answer": "HelloWorld"
+                    }, 
+                    {
+                      "question": "Which of the following methods can be used to add an element to a set?",
+                         "options": ["add()", "append()", "insert()", "push()"],
+                             "answer": "add()"
+                    },
+                    {
+                      "question": "What will be the output of the following code: print(bool(''))?",
+                         "options": ["True", "False", "None", "Error"],
+                             "answer": "False"
+                    },
+                    {
+                      "question": "Which of the following is not a keyword in Python?",
+                         "options": ["def", "return", "lambda", "include"],
+                             "answer": "include"
+                    },
+                    {
+                      "question": "What is the output of the following code: print(10 // 3)?",
+                         "options": ["3.33", "3", "4", "3.0"],
+                             "answer": "3"
+                    },
+                    {
+                      "question": "Which of the following is used to define a function in Python?",
+                          "options": ["function", "def", "define", "func"],
+                              "answer": "def"
+                    },
+                    {
+                      "question": "What will be the output of the following code: print('abc' * 3)?",
+                          "options": ["abcabcabc", "abc abc abc", "Error", "abc3"],
+                              "answer": "abcabcabc"
+                    },
+                    {
+                      "question": "Which of the following is a valid way to create a dictionary?",
+                         "options": ["dict = {}", "dict = []", "dict = ()", "dict = set()"],
+                             "answer": "dict = {}"
+                    },
+                    {
+                      "question": "What is the output of the following code: print(len('Hello'))?",
+                         "options": ["4", "5", "6", "None"],
+                              "answer": "5"
+                    },
+                    {
+                      "question": "Which of the following statements is used to handle exceptions in Python?",
+                         "options": ["try", "catch", "except", "handle"],
+                              "answer": "try"
+                    },
+                    {
+                       "question": "What will be the output of the following code: print(1 == True)?",
+                         "options": ["True", "False", "None", "Error"],
+                             "answer": "True"
+                    },
+                    {
+                      "question": "Which of the following is a built-in function in Python?",
+                         "options": ["print()", "echo()", "write()", "display()"],
+                              "answer": "print()"
+                    },
+                    {
+                      "question": "What is the output of the following code: print('Python'.lower())?",
+                          "options": ["python", "Python", "PYTHON", "Error"],
+                              "answer": "python"
+                    },
+                    {
+                      "question": "Which of the following is used to import a module in Python?",
+                         "options": ["include", "import", "require", "using"],
+                              "answer": "import"
+                    },
+                    {
+                      "question": "What will be the output of the following code: print(0.1 + 0.2 == 0.3)?",
+                          "options": ["True", "False", "None", "Error"],
+                              "answer": "False"
+                    }
+                ]
+            },
+            'Java': {
+                'beginner': [
+                    {
+                        "question": "What is the correct way to declare a variable in Java?",
+                          "options": ["int 1x=10;", "int x=10;", "int x=10", "1x=10;"], 
+                          "answer": "int x=10;"
+                    },
+                    {
+                        "question": "Which of the following is not a Java keyword?", 
+                        "options": ["class", "public", "void", "main"], 
+                        "answer": "main"
+                    },
+                    {
+                       "question": "What is the correct syntax to output 'Hello World' in Java?",
+                          "options": [
+                             "System.out.println('Hello World');",
+                             "echo 'Hello World';",
+                             "print('Hello World');",
+                             "Console.WriteLine('Hello World');"
+                             ],
+                                  "answer": "System.out.println('Hello World');"
+                    },
+                    {
+                       "question": "Which data type is used to create a variable that should store text?",
+                          "options": [
+                             "String",
+                             "Text",
+                             "MyString",
+                             "Char"
+                             ],
+                                 "answer": "String"
+                    },
+                    {
+                      "question": "What is the correct way to declare a variable in Java?",
+                         "options": [
+                             "int x = 5;",
+                             "5 = int x;",
+                             "int 5 = x;",
+                             "x int = 5;"
+                             ],
+                                   "answer": "int x = 5;"
+                    },
+                    {
+                      "question": "Which of the following is a valid declaration of an array in Java?",
+                         "options": [
+                              "int arr[];",
+                              "int arr = new int[5];",
+                              "int arr[5];",
+                              "array int arr;"
+                             ],
+                                  "answer": "int arr[];"
+                    },
+                    {
+                       "question": "What is the output of the following code: System.out.println(1 + 2 + '3');?",
+                         "options": [
+                                 "33",
+                                 "6",
+                                 "15",
+                                 "123"
+                                 ],
+                                      "answer": "33"
+                    },
+                    {
+                       "question": "Which keyword is used to create a class in Java?",
+                         "options": [
+                              "class",
+                             "create",
+                             "new",
+                             "function"
+                             ],
+                                 "answer": "class"
+                    },
+                    {
+                       "question": "What is the default value of a boolean variable in Java?",
+                        "options": [
+                               "true",
+                               "false",
+                               "0",
+                               "null"
+                             ],
+                                 "answer": "false"
+                    },
+                    {
+                       "question": "Which of the following is not a Java keyword?",
+                         "options": [
+                              "static",
+                              "Boolean",
+                              "void",
+                              "private"
+                             ],
+                                 "answer": "Boolean"
+                    },
+                    {
+                       "question": "What is the correct way to create a method in Java?",
+                           "options": [
+                               "void myMethod() {}",
+                               "function myMethod() {}",
+                               "create myMethod() {}",
+                               "method myMethod() {}"
+                              ],
+                                    "answer": "void myMethod() {}"
+                    },
+                    {
+                       "question": "Which operator is used to compare two values in Java?",
+                          "options": [
+                              "=",
+                             "==",
+                             "===",
+                             "equals"
+                             ],
+                                  "answer": "=="
+                    },
+                    {
+                        "question": "What is the purpose of the 'main' method in Java?",
+                           "options": [
+                             "To start the program",
+                             "To end the program",
+                             "To declare variables",
+                             "To create classes"
+                              ],
+                                  "answer": "To start the program"
+                    },
+                    {
+                       "question": "Which of the following is a loop structure in Java?",
+                          "options": [
+                               "for",
+                              "if",
+                              "switch",
+                             "case"
+                             ],
+                                  "answer": "for"
+                    },
+                    {
+                      "question": "What is the output of the following code: System.out.println(5 + 3 * 2);?",
+                          "options": [
+                             "16",
+                             "11",
+                             "10",
+                             "13"
+                             ],
+                                 "answer": "11"
+                    },
+                    {
+                       "question": "Which of the following is used to handle exceptions in Java?",
+                         "options": [
+                             "try-catch",
+                             "if-else",
+                             "for-loop",
+                             "switch-case"
+                             ],
+                                  "answer": "try-catch"
+                    },
+                    {
+                       "question": "What is the correct way to comment in Java?",
+                         "options": [
+                              "// This is a comment",
+                             "# This is a comment",
+                             "/* This is a comment */",
+                             "Both A and C"
+                             ],
+                                   "answer": "Both A and C"
+                    },
+                    {
+                       "question": "Which of the following is a valid way to declare a constant in Java?",
+                          "options": [
+                             "final int x = 10;",
+                              "const int x = 10;",
+                              "int x = 10;",
+                              "constant int x = 10;"
+                              ],
+                                  "answer": "final int x = 10;"
+                    },
+                    {
+                       "question": "What is the output of the following code: System.out.println(10 % 3);?",
+                          "options": [
+                              "1",
+                              "3",
+                              "0",
+                              "10"
+                             ],
+                                 "answer": "1"
+                    },
+                    {
+                        "question": "Which of the following is used to import packages in Java?",
+                          "options": [
+                            "import",
+                            "include",
+                            "using",
+                            "require"
+                         ],
+                                "answer": "import"
+                    }
+                ],
+                'intermediate': [
+                    {
+                        "question": "What is the main method in Java?",
+                            "options": ["public static void main(String[] args)", "public void main(String[] args)", "static void main(String[] args)", "void main(String[] args)"], 
+                               "answer": "public static void main(String[] args)"
+                    },
+                    {
+                        "question": "What is inheritance in Java?", 
+                          "options": ["A way to reuse code", "A way to hide code", "A way to secure code", "A way to optimize code"], 
+                             "answer": "A way to reuse code"
+                    },
+                    {
+                       "question": "What is the default value of a boolean variable in Java?",
+                         "options": ["true", "false", "null", "0"],
+                              "answer": "false"
+                    },
+                    {
+                       "question": "Which of the following is not a valid keyword in Java?",
+                          "options": ["static", "void", "main", "package"],
+                             "answer": "main"
+                    },
+                    {
+                       "question": "What is the size of an int variable in Java?",
+                          "options": ["16 bits", "32 bits", "64 bits", "8 bits"],
+                              "answer": "32 bits"
+                    },
+                    {
+                      "question": "Which of the following is used to create a thread in Java?",
+                         "options": ["Thread class", "Runnable interface", "Both A and B", "None of the above"],
+                          "answer": "Both A and B"
+                    },
+                    {
+                      "question": "What is the output of the following code: System.out.println(1 + 2 + '3');?",
+                        "options": ["33", "6", "15", "123"],
+                          "answer": "33"
+                    },
+                    {
+                       "question": "Which of the following is a valid declaration of a char?",
+                         "options": ["char c = 'c';", "char c = 'cc';", "char c = \"c\";", "char c = c;"],
+                             "answer": "char c = 'c';"
+                    },
+                    {
+                       "question": "What is the purpose of the 'final' keyword in Java?",
+                          "options": ["To declare constants", "To prevent method overriding", "To prevent inheritance", "All of the above"],
+                             "answer": "All of the above"
+                    },
+                    {
+                        "question": "Which of the following statements is true about constructors in Java?",
+                            "options": ["A constructor can have a return type", "A constructor can be private", "A constructor can be inherited", "None of the above"],
+                                "answer": "A constructor can be private"
+                    },
+                    {
+                        "question": "What will be the output of the following code: System.out.println(10 + 20 + \"30\");?",
+                          "options": ["1020", "30", "1030", "10 20 30"],
+                             "answer": "1030"
+                    },
+                    {
+                       "question": "Which of the following is not a part of the Java Collections Framework?",
+                          "options": ["List", "Set", "Map", "Array"],
+                              "answer": "Array"
+                    },
+                    {
+                       "question": "What is the use of the 'this' keyword in Java?",
+                          "options": ["To refer to the current object", "To refer to the parent class", "To refer to the static method", "None of the above"],
+                              "answer": "To refer to the current object"
+                    },
+                    {
+                       "question": "Which of the following is a marker interface in Java?",
+                         "options": ["Serializable", "Cloneable", "Remote", "All of the above"],
+                             "answer": "All of the above"
+                    },
+                    {
+                      "question": "What is the output of the following code: System.out.println(5 == 5 ? \"True\" : \"False\");?",
+                        "options": ["True", "False", "5", "Error"],
+                            "answer": "True"
+                    },
+                    {
+                      "question": "Which of the following is used to handle exceptions in Java?",
+                         "options": ["try-catch", "throw", "throws", "All of the above"],
+                              "answer": "All of the above"
+                    },
+                    {
+                       "question": "What is the purpose of the 'super' keyword in Java?",
+                          "options": ["To call the parent class constructor", "To access parent class methods", "To access parent class variables", "All of the above"],
+                              "answer": "All of the above"
+                    },
+                    {
+                      "question": "Which of the following is a valid way to declare an array in Java?",
+                          "options": ["int[] arr;", "int arr[];", "Both A and B", "None of the above"],
+                              "answer": "Both A and B"
+                    },
+                    {
+                      "question": "What is the output of the following code: System.out.println(\"Hello\".length());?",
+                         "options": ["4", "5", "6", "Hello"],
+                             "answer": "5"
+                    },
+                    {
+                       "question": "Which of the following is not a valid access modifier in Java?",
+                          "options": ["public", "private", "protected", "internal"],
+                             "answer": "internal"
+                    }
+                ],
+                'expert': [
+                    {
+                        "question": "What is the difference between an interface and an abstract class?", 
+                           "options": ["Interfaces can have methods with implementations", "Abstract classes cannot have constructors", "Interfaces cannot have instance variables", "Abstract classes can implement multiple interfaces"], 
+                              "answer": "Interfaces cannot have instance variables"
+                    },
+                    {
+                      "question": "What is a Java Virtual Machine?",
+                         "options": ["A runtime environment", "A compiler", "A debugger", "A library"],
+                             "answer": "A runtime environment"
+                    },
+                    {
+                       "question": "What is the default value of a boolean variable in Java?",
+                           "options": ["true", "false", "null", "0"],
+                              "answer": "false"
+                    },
+                    {
+                       "question": "Which of the following is not a Java keyword?",
+                           "options": ["static", "Boolean", "void", "private"],
+                               "answer": "Boolean"
+                    },
+                    {
+                      "question": "What is the size of an int variable in Java?",
+                          "options": ["16 bits", "32 bits", "64 bits", "8 bits"],
+                              "answer": "32 bits"
+                    },
+                    {
+                       "question": "Which of the following is a valid declaration of a char?",
+                           "options": ["char c = 'c';", "char c = 'cc';", "char c = \"c\";", "char c = c;"],
+                              "answer": "char c = 'c';"
+                    },
+                    {
+                       "question": "What is the output of the following code: System.out.println(1 + 2 + '3');?",
+                          "options": ["33", "6", "15", "123"],
+                              "answer": "33"
+                    },
+                    {
+                       "question": "Which of the following is used to create an object in Java?",
+                         "options": ["new", "create", "object", "class"],
+                             "answer": "new"
+                    },
+                    {
+                      "question": "What is the purpose of the 'final' keyword in Java?",
+                          "options": ["To declare a constant", "To declare a method that cannot be overridden", "To declare a class that cannot be inherited", "All of the above"],
+                             "answer": "All of the above"
+                    },
+                    {
+                      "question": "Which of the following is a valid way to declare an array in Java?",
+                           "options": ["int[] arr;", "int arr[];", "Both A and B", "None of the above"],
+                              "answer": "Both A and B"
+                    },
+                    {
+                        "question": "What will be the output of the following code: System.out.println(10 / 4);?",
+                            "options": ["2", "2.5", "2.0", "3"],
+                                "answer": "2"
+                    },
+                    {
+                      "question": "Which of the following statements is true about constructors in Java?",
+                         "options": ["A constructor can have a return type", "A constructor can be private", "A constructor can be inherited", "None of the above"],
+                              "answer": "A constructor can be private"
+                    }, 
+                    {
+                       "question": "What is the result of the expression 5 + 2 * 3?",
+                         "options": ["11", "21", "17", "15"],
+                          "answer": "11"
+                    },
+                    {
+                      "question": "Which of the following is not a valid access modifier in Java?",
+                          "options": ["public", "private", "protected", "internal"],
+                              "answer": "internal"
+                    },
+                    {
+                       "question": "What is the output of the following code: System.out.println(5 == 5.0);?",
+                          "options": ["true", "false", "Compilation error", "Runtime error"],
+                              "answer": "true"
+                    },
+                    {
+                       "question": "Which of the following is used to handle exceptions in Java?",
+                          "options": ["try-catch", "throw", "throws", "All of the above"],
+                             "answer": "All of the above"
+                    },
+                    {
+                       "question": "What is the default value of an integer variable in Java?",
+                          "options": ["0", "1", "null", "undefined"],
+                             "answer": "0"
+                    },
+                    {
+                      "question": "Which of the following is a valid way to create a thread in Java?",
+                         "options": ["By extending Thread class", "By implementing Runnable interface", "Both A and B", "None of the above"],
+                             "answer": "Both A and B"
+                    },
+                    {
+                       "question": "What is the output of the following code: System.out.println(\"Hello\" + null);?",
+                          "options": ["Hello", "null", "Hello null", "Compilation error"],
+                             "answer": "Hello null"
+                    },
+                    {
+                       "question": "Which of the following is a feature of Java?",
+                          "options": ["Platform independence", "Automatic garbage collection", "Multithreading", "All of the above"],
+                             "answer": "All of the above"
+                    }
+                ]
+            }
+        }
+        self.score = 0
+
+    def start_quiz(self):
+        topic = input("Choose a topic (Python/Java/C): ")
+        level = input("Choose a level (beginner/intermediate/expert): ")
+        num_questions = int(input("How many questions would you like to answer?(1-20) "))
+        selected_questions = random.sample(self.questions[topic][level], num_questions)
+        
+        start_time = time.time()
+        for question in selected_questions:
+            print(question["question"])
+            for idx, option in enumerate(question["options"]):
+                print(f"{idx + 1}. {option}")
+            answer = input("Your answer(1-4): ")
+            if question['options'][int(answer) - 1] == question["answer"]:
+                self.score += 1
+                print("Correct!✅\n")
+            else:
+                print(f"Wrong!❌ The correct answer is {question['answer']}\n")
+        
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print(f"Your score: {self.score}/{num_questions}")
+        print(f"Time taken: {elapsed_time:.2f} seconds")
+
+if __name__ == "__main__":
+    game = QuizGame()
+    game.start_quiz()
