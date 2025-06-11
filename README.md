@@ -58,9 +58,7 @@ Time taken: 12.45 seconds
  ┣ 📜 quiz_game.py      # Main game logic
 ```
 
-> 🔧 File may be named differently in your project; update the filename accordingly.
-
-## 📚 Topics Covered
+> 🔧 Topics Covered
 
 - **Python**: Syntax, datatypes, functions, operators, and core concepts.
 - **Java**: Basics, keywords, control flow, OOP concepts.
